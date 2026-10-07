@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pierre · Feuille · Ciseaux — Le duel qui n'oublie rien</title>
+    <meta name="description" content="Affrontez l'ordinateur à pierre-feuille-ciseaux. Le score, le record et l'historique sont gardés par le navigateur.">
+    <link rel="stylesheet" href="vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="entete">
+    <div class="container">
+        <p class="entete-emojis" aria-hidden="true">🪨 📄 ✂️</p>
+        <h1 class="entete-titre">Pierre · Feuille · Ciseaux</h1>
+        <p class="entete-sous-titre">Le duel qui n'oublie rien : ferme le navigateur, ton score t'attend.</p>
+    </div>
+</header>
+
+<main class="container py-4">
+    <div class="row g-4">
+
+        <!-- ============ L'ARÈNE ============ -->
+        <div class="col-lg-8">
+            <section class="arene" aria-labelledby="titre-arene">
+                <h2 id="titre-arene" class="visually-hidden">L'arène</h2>
+
+                <!-- Le tableau de score -->
+                <div class="tableau-score">
+                    <div class="camp">
+                        <p id="nom-joueur" class="camp-nom">Joueur</p>
+                        <p id="score-joueur" class="camp-points">0</p>
+                    </div>
+                    <div class="camp camp-nuls">
+                        <p class="camp-nom">Nuls</p>
+                        <p id="score-nuls" class="camp-points">0</p>
+                    </div>
+                    <div class="camp">
+                        <p class="camp-nom">Ordi 🤖</p>
+                        <p id="score-ordi" class="camp-points">0</p>
+                    </div>
+                </div>
+
+                <!-- Les deux mains -->
+                <div class="duel">
+                    <div class="main">
+                        <p class="main-etiquette">Toi</p>
+                        <p id="main-joueur" class="main-emoji">❔</p>
+                    </div>
+                    <p class="versus">VS</p>
+                    <div class="main">
+                        <p class="main-etiquette">L'ordi</p>
+                        <p id="main-ordi" class="main-emoji">❔</p>
+                    </div>
+                </div>
+
+                <!-- Le message de la manche (aria-live : lu par les lecteurs d'écran) -->
+                <p id="message" class="message" aria-live="polite">Choisis ton coup !</p>
+
+                <!-- Les trois coups -->
+                <div class="coups">
+                    <button type="button" class="btn-coup" data-coup="pierre">
+                        <span class="btn-coup-emoji" aria-hidden="true">🪨</span>
+                        Pierre
+                    </button>
+                    <button type="button" class="btn-coup" data-coup="feuille">
+                        <span class="btn-coup-emoji" aria-hidden="true">📄</span>
+                        Feuille
+                    </button>
+                    <button type="button" class="btn-coup" data-coup="ciseaux">
+                        <span class="btn-coup-emoji" aria-hidden="true">✂️</span>
+                        Ciseaux
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============ LA COLONNE DE DROITE ============ -->
+        <div class="col-lg-4">
+
+            <!-- Le pseudo -->
+            <form id="formulaire-pseudo" class="carte" novalidate>
+                <h2 class="carte-titre">👤 Ton pseudo</h2>
+                <label for="pseudo" class="visually-hidden">Pseudo</label>
+                <div class="input-group">
+                    <input type="text" id="pseudo" class="form-control" maxlength="15"
+                           placeholder="Ex. : Ahmed" autocomplete="off">
+                    <button type="submit" class="btn btn-accent">OK</button>
+                </div>
+            </form>
+
+            <!-- La série et le record -->
+            <section class="carte" aria-labelledby="titre-serie">
+                <h2 id="titre-serie" class="carte-titre">🔥 Série de victoires</h2>
+                <div class="serie">
+                    <div>
+                        <p class="serie-etiquette">En cours</p>
+                        <p id="serie" class="serie-chiffre">0</p>
+                    </div>
+                    <div>
+                        <p class="serie-etiquette">Record</p>
+                        <p id="record" class="serie-chiffre">0</p>
+                    </div>
+                </div>
+                <p id="nouveau-record" class="nouveau-record d-none">🏆 Nouveau record !</p>
+            </section>
+
+            <!-- L'historique -->
+            <section class="carte" aria-labelledby="titre-historique">
+                <h2 id="titre-historique" class="carte-titre">📜 Les 5 dernières manches</h2>
+                <p id="historique-vide" class="historique-vide">Aucune manche jouée pour l'instant.</p>
+                <!-- Les lignes sont créées ici par jeu.js -->
+                <ol id="historique" class="historique"></ol>
+            </section>
+
+            <button type="button" id="btn-reinitialiser" class="btn btn-outline-light w-100">
+                Remettre les scores à zéro
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="pied">
+    <div class="container">
+        Pierre · Feuille · Ciseaux · 420-931-MA Programmation Web (Front-End) · Séance 16
+    </div>
+</footer>
+
+<script src="js/jeu.js"></script>
+</body>
+</html>
